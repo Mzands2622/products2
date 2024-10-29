@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <!-- Meta tags for character encoding, viewport, and page title -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta charset="utf-8" />
     <title>Assignment #7</title>
+
+    <!-- Link to jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    
     <style type="text/css">
+      /* CSS for page, layout and design */
       body,
       html {
         margin: 0px;
@@ -70,13 +74,20 @@
     </style>
   </head>
   <body>
+    <!-- Store title -->
     <h1 id="storeTitle">Matt's Store</h1>
+
+    <!-- Container that will hold/display the fetched objects from JSON file -->
     <div id="foundProducts"></div>
     <script>
+      // Fetch the data from the JSON file
       $.get("products.json", function (info) {
+        // Capture all of the data from the JSON file which represents the items in the store
         let foundStoreInfo = info.store;
 
+        // Loop through each product within the store and extract the necessary data
         foundStoreInfo.product.forEach(function (product) {
+          // Create HTML structure for each of the found products
           let productInfo = '<div class="indvidualPoduct">';
           productInfo +=
             "<h2>" + product.name + "</h2>";
@@ -91,7 +102,8 @@
             product.categories.category.join(" ") +
             "</p>";
           productInfo += "</div>";
-
+          
+          // Append the information related to each product to the above container (foundProducts)
           $("#foundProducts").append(productInfo);
         });
       });
