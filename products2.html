@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <title>Assignment #7</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style type="text/css">
+      body,
+      html {
+        margin: 0px;
+        padding: 0px;
+        width: 100%;
+        background: linear-gradient(#ed7845,#f95ca4, #e2625b);
+      }
+
+      #foundProducts {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+
+      .indvidualPoduct {
+        border: 2px dashed rgb(255, 253, 253);
+        border-radius: 10px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        text-align: center;
+        width: 700px;
+      }
+
+      #storeTitle {
+        display: flex;
+        justify-content: center;
+      }
+
+      p {
+        font-size: 20px;
+        color: #6d45b8;
+        font-weight: 800;
+      }
+
+      h2 {
+        color: #081b87;
+      }
+
+      h1 {
+        display: flex;
+        margin-right: auto;
+        margin-left: auto;
+        border: 3px solid rgb(255, 255, 255);
+        border-radius: 10px;
+        width: 30%;
+        padding: 20px;
+        font-style: bold;
+        color: rgb(255, 193, 7);
+      }
+
+      h1:hover {
+        background-color: white;
+      }
+
+      .indvidualPoduct:hover {
+        background-color: white;
+        padding: 10px;
+        opacity: 0.8;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="storeTitle">Matt's Store</h1>
+    <div id="foundProducts"></div>
+    <script>
+      $.get("products.json", function (info) {
+        let foundStoreInfo = info.store;
+
+        foundStoreInfo.product.forEach(function (product) {
+          let productInfo = '<div class="indvidualPoduct">';
+          productInfo +=
+            "<h2>" + product.name + "</h2>";
+          productInfo +=
+            "<p>" + product.description + "</p>";
+          productInfo +=
+            "<p>" + product.label[2] + " " + product.price + "</p>";
+          productInfo +=
+            "<p>" +
+            product.label[3] +
+            ": " +
+            product.categories.category.join(" ") +
+            "</p>";
+          productInfo += "</div>";
+
+          $("#foundProducts").append(productInfo);
+        });
+      });
+    </script>
+  </body>
+</html>
